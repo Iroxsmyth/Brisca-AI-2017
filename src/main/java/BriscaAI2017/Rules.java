@@ -13,7 +13,44 @@ public class Rules {
     }
 
     public int winnerOfRound(ArrayList<Card> round){
-        return 0;
+        int winner = 0;
+        Card temp = round.get(0);
+        boolean killer = false;
+        if(temp.getSuite() == this.trump.getSuite()){
+            killer = true;
+        }
+        else{
+            killer = false;
+        }
+        for(int i = 1; i < round.size()-1;i++){
+            if(killer){
+                if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() > temp.getValue()){
+                    winner = i;
+                    temp = round.get(i);
+                }
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getNumber() > temp.getNumber()) {
+                    winner = i;
+                    temp = round.get(i);
+                }
+            }
+            else{
+                if(round.get(i).getSuite().equals(this.trump.getSuite())){
+                    winner = i;
+                    temp = round.get(i);
+                    killer = true;
+                }
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() > temp.getValue()){
+                    winner = i;
+                    temp = round.get(i);
+                }
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getNumber() > temp.getNumber()){
+                    winner = i;
+                    temp = round.get(i);
+                }
+
+            }
+        }
+        return winner;
     }
 
     public int winnerOfGame(ArrayList<Card> player1, ArrayList<Card> player2){
