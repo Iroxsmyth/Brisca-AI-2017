@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Player {
     private ArrayList<Card> hand = new ArrayList<>();
     private ArrayList<Card> point = new ArrayList<>();
+    private int score;
 
     public Player(ArrayList<Card> hand, ArrayList<Card> point) {
         this.hand = hand;
@@ -27,16 +28,24 @@ public class Player {
 
     }
 
-    private void getCardToHand(Card temp){
+    protected void getCardToHand(Card temp){
         hand.add(temp);
     }
 
-    private void addPoint(ArrayList<Card> round){
+    protected void addPoint(ArrayList<Card> round){
         point.addAll(round);
     }
 
     private void removeItemHand(int i){
         getHand().remove(i);
+    }
+
+    protected int getScore(){
+        int total = 0;
+        for (Card p : point) {
+            total += p.getValue();
+        }
+        return total;
     }
 
     public ArrayList<Card> getHand() {
