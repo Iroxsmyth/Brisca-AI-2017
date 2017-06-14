@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class Environment {
     private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<Card> round= new ArrayList<>();
+    private ArrayList<Move> round= new ArrayList<>();
 
-    public Environment(ArrayList<Player> players, ArrayList<Card> round) {
+    public Environment(ArrayList<Player> players, ArrayList<Move> round) {
         this.players = players;
         this.round = round;
     }
@@ -18,6 +18,9 @@ public class Environment {
         players.add(player);
     }
 
+    protected void addCard(Player player, Card card){
+        round.add( new Move(player, card));
+    }
     public ArrayList<Player> getPlayers() {
         return players;
     }
@@ -26,11 +29,11 @@ public class Environment {
         this.players = players;
     }
 
-    public ArrayList<Card> getRound() {
+    public ArrayList<Move> getRound() {
         return round;
     }
 
-    public void setRound(ArrayList<Card> round) {
+    public void setRound(ArrayList<Move> round) {
         this.round = round;
     }
 }
