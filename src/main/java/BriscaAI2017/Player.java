@@ -25,7 +25,7 @@ public class Player {
             }
         }
         return false;
-        //Class Environment addCardtoTable
+        //Class Board addCardtoTable
     }
 
     protected void getCardToHand(Card temp){
