@@ -6,7 +6,7 @@ package aima.core.agent;
  */
 public interface EnvironmentViewNotifier {
 	/**
-	 * A simple notification message, to be forwarded to an Environment's
+	 * A simple notification message, to be forwarded to an Board's
 	 * registered EnvironmentViews.
 	 * 
 	 * @param msg

@@ -12,14 +12,14 @@ import java.util.List;
  */
 public interface Environment {
 	/**
-	 * Returns the Agents belonging to this Environment.
+	 * Returns the Agents belonging to this Board.
 	 * 
-	 * @return The Agents belonging to this Environment.
+	 * @return The Agents belonging to this Board.
 	 */
 	List<Agent> getAgents();
 
 	/**
-	 * Add an agent to the Environment.
+	 * Add an agent to the Board.
 	 * 
 	 * @param agent
 	 *            the agent to be added.
@@ -35,14 +35,14 @@ public interface Environment {
 	void removeAgent(Agent agent);
 
 	/**
-	 * Returns the EnvironmentObjects that exist in this Environment.
+	 * Returns the EnvironmentObjects that exist in this Board.
 	 * 
-	 * @return the EnvironmentObjects that exist in this Environment.
+	 * @return the EnvironmentObjects that exist in this Board.
 	 */
 	List<EnvironmentObject> getEnvironmentObjects();
 
 	/**
-	 * Add an EnvironmentObject to the Environment.
+	 * Add an EnvironmentObject to the Board.
 	 * 
 	 * @param eo
 	 *            the EnvironmentObject to be added.
@@ -50,7 +50,7 @@ public interface Environment {
 	void addEnvironmentObject(EnvironmentObject eo);
 
 	/**
-	 * Remove an EnvironmentObject from the Environment.
+	 * Remove an EnvironmentObject from the Board.
 	 * 
 	 * @param eo
 	 *            the EnvironmentObject to be removed.
@@ -58,28 +58,28 @@ public interface Environment {
 	void removeEnvironmentObject(EnvironmentObject eo);
 
 	/**
-	 * Move the Environment one time step forward.
+	 * Move the Board one time step forward.
 	 */
 	void step();
 
 	/**
-	 * Move the Environment n time steps forward.
+	 * Move the Board n time steps forward.
 	 * 
 	 * @param n
-	 *            the number of time steps to move the Environment forward.
+	 *            the number of time steps to move the Board forward.
 	 */
 	void step(int n);
 
 	/**
-	 * Step through time steps until the Environment has no more tasks.
+	 * Step through time steps until the Board has no more tasks.
 	 */
 	void stepUntilDone();
 
 	/**
-	 * Returns <code>true</code> if the Environment is finished with its current
+	 * Returns <code>true</code> if the Board is finished with its current
 	 * task(s).
 	 * 
-	 * @return <code>true</code> if the Environment is finished with its current
+	 * @return <code>true</code> if the Board is finished with its current
 	 *         task(s).
 	 */
 	boolean isDone();
@@ -94,7 +94,7 @@ public interface Environment {
 	double getPerformanceMeasure(Agent forAgent);
 
 	/**
-	 * Add a view on the Environment.
+	 * Add a view on the Board.
 	 * 
 	 * @param ev
 	 *            the EnvironmentView to be added.
@@ -102,7 +102,7 @@ public interface Environment {
 	void addEnvironmentView(EnvironmentView ev);
 
 	/**
-	 * Remove a view on the Environment.
+	 * Remove a view on the Board.
 	 * 
 	 * @param ev
 	 *            the EnvironmentView to be removed.

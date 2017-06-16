@@ -26,7 +26,7 @@ import aima.core.agent.impl.DynamicAction;
  * @author Mike Stampone
  */
 public class VacuumEnvironment extends AbstractEnvironment {
-	// Allowable Actions within the Vacuum Environment
+	// Allowable Actions within the Vacuum Board
 	public static final Action ACTION_MOVE_LEFT = new DynamicAction("Left");
 	public static final Action ACTION_MOVE_RIGHT = new DynamicAction("Right");
 	public static final Action ACTION_SUCK = new DynamicAction("Suck");
@@ -92,7 +92,7 @@ public class VacuumEnvironment extends AbstractEnvironment {
 				updatePerformanceMeasure(a, 10);
 			}
 		} else if (agentAction.isNoOp()) {
-			// In the Vacuum Environment we consider things done if
+			// In the Vacuum Board we consider things done if
 			// the agent generates a NoOp.
 			isDone = true;
 		}

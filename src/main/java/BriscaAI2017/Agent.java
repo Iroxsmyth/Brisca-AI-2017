@@ -1,9 +1,8 @@
 package BriscaAI2017;
-
-import aima.core.robotics.MonteCarloLocalization;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import static java.lang.Math.log;
+import static java.lang.Math.sqrt;
 
 /**
  * Created by Danny on 6/15/2017 - 1:36 PM in Brisca-AI-2017.
@@ -14,7 +13,7 @@ public class Agent {
     private Card killer;
 
     //Monte Carlo Tree Search
-    private ArrayList<Double> UCT = new ArrayList<Double>(); // The Selection Function Montecarlo
+    private ArrayList<Double> UCT = new ArrayList<Double>(); // The Selection Function Montecarlo: Upper Confidence Bound 1 applied to trees
     private ArrayList<Integer> nVisit = new ArrayList<>();
     private ArrayList<Integer> nWin = new ArrayList<>();
     private ArrayList<Integer> nSimulation = new ArrayList<>();
@@ -69,10 +68,7 @@ public class Agent {
                     tempint = points.get(j);
                 }
             }
-            for(int j = 0; j < points.size(); j++){
-                System.out.print(points.get(j)+" ");
-            }
-            System.out.println();
+            System.out.println(points.get(0)+", "+points.get(1)+", "+points.get(2)+"  Tempint: "+tempint);
             return this.hand.get(points.indexOf(tempint));
         }
         else{
@@ -100,9 +96,6 @@ public class Agent {
                     }
                     temp.remove(topcard);
                 }
-                if(handcard.getSuite().equals(this.killer.getSuite()) || handcard.getNumber()==1 || handcard.getNumber()==3){
-                    wins = wins - ((int)(0.25*wins));
-                }
                 temp.remove(handcard);
                 winPoints.add(wins);
                 wins = 0;
@@ -113,10 +106,15 @@ public class Agent {
                     tempint = winPoints.get(j);
                 }
             }
-            for(int j = 0; j < winPoints.size(); j++){
-                System.out.print(winPoints.get(j)+" ");
+
+            for(int i=0; i<hand.size();i++){
+                double point=winPoints.get(i);
+                double uct = point/36 + sqrt(2)*sqrt(log(108)/36);
+                this.UCT.set(i, uct);
             }
-            System.out.println();
+
+            System.out.println(winPoints.get(0)+", "+winPoints.get(1)+", "+winPoints.get(2)+"  Tempint: "+tempint);
+            System.out.println(this.UCT.get(0)+", "+this.UCT.get(1)+", "+this.UCT.get(2));
             return this.hand.get(winPoints.indexOf(tempint));
         }
     }

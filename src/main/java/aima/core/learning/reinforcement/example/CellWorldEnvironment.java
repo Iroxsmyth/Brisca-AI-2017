@@ -13,7 +13,7 @@ import aima.core.probability.mdp.TransitionProbabilityFunction;
 import aima.core.util.Randomizer;
 
 /**
- * Implementation of the Cell World Environment, supporting the execution of
+ * Implementation of the Cell World Board, supporting the execution of
  * trials for reinforcement learning agents.
  * 
  * @author Ciaran O'Reilly

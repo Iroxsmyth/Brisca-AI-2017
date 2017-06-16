@@ -17,15 +17,13 @@ public class Player {
     }
 
     //get card of the algorithms Depth First and Montecarlo Method
-    private boolean play(Card cardToPlay){
-        for(int i = 0; i < getHand().size(); i++) {
+    private void play(Card cardToPlay) {
+        for (int i = 0; i < getHand().size(); i++) {
             if (Objects.equals(getHand().get(i).getSuite(), cardToPlay.getSuite()) && getHand().get(i).getNumber() == cardToPlay.getNumber()) {
                 removeItemHand(i);
-                return true;
+                break;
             }
         }
-        return false;
-        //Class Board addCardtoTable
     }
 
     protected void getCardToHand(Card temp){

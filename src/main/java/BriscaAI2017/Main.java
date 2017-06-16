@@ -151,17 +151,13 @@ public class Main {
 
                 }
                 else{
-
                     player2Points.add(round.remove(0));
                     player2Points.add(round.remove(0));
                     humanWinner=true;
                     counter++;
-
                 }
-
                 System.out.println();
                 System.out.println();
-
             }
             else {
                 System.out.println(counter);

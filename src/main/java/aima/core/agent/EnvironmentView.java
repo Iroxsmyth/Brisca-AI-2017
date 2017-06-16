@@ -2,7 +2,7 @@ package aima.core.agent;
 
 /**
  * Allows external applications/logic to view the interaction of Agent(s) with
- * an Environment.
+ * an Board.
  * 
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
@@ -11,7 +11,7 @@ package aima.core.agent;
  */
 public interface EnvironmentView {
 	/**
-	 * A simple notification message from an object in the Environment.
+	 * A simple notification message from an object in the Board.
 	 * 
 	 * @param msg
 	 *            the message received.
@@ -23,21 +23,21 @@ public interface EnvironmentView {
 	 * perceives initially.
 	 * 
 	 * @param agent
-	 *            the Agent just added to the Environment.
+	 *            the Agent just added to the Board.
 	 * @param source
-	 *            the Environment to which the agent was added.
+	 *            the Board to which the agent was added.
 	 */
 	void agentAdded(Agent agent, Environment source);
 
 	/**
-	 * Indicates the Environment has changed as a result of an Agent's action.
+	 * Indicates the Board has changed as a result of an Agent's action.
 	 * 
 	 * @param agent
 	 *            the Agent that performed the Action.
 	 * @param action
 	 *            the Action the Agent performed.
 	 * @param source
-	 *            the Environment in which the agent has acted.
+	 *            the Board in which the agent has acted.
 	 */
 	void agentActed(Agent agent, Action action, Environment source);
 }

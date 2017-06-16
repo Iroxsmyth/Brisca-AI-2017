@@ -69,4 +69,20 @@ public class Deck {
     public Card getCard(int i){
         return this.cardList.get(i);
     }
+
+    public ArrayList<String> getSuites() {
+        return suites;
+    }
+
+    public void setSuites(ArrayList<String> suites) {
+        this.suites = suites;
+    }
+
+    public ArrayList<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(ArrayList<Card> cardList) {
+        this.cardList = cardList;
+    }
 }

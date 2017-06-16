@@ -53,7 +53,7 @@ public abstract class AbstractEnvironment implements Environment,
 	}
 
 	//
-	// START-Environment
+	// START-Board
 	public List<Agent> getAgents() {
 		// Return as a List but also ensures the caller cannot modify
 		return new ArrayList<Agent>(agents);
@@ -150,7 +150,7 @@ public abstract class AbstractEnvironment implements Environment,
 		}
 	}
 
-	// END-Environment
+	// END-Board
 	//
 
 	//
