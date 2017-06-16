@@ -100,6 +100,9 @@ public class Agent {
                     }
                     temp.remove(topcard);
                 }
+                if(handcard.getSuite().equals(this.killer.getSuite()) || handcard.getNumber()==1 || handcard.getNumber()==3){
+                    wins = wins - ((int)(0.25*wins));
+                }
                 temp.remove(handcard);
                 winPoints.add(wins);
                 wins = 0;
