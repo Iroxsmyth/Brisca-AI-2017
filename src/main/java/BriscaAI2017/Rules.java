@@ -22,13 +22,17 @@ public class Rules {
         else{
             killer = false;
         }
-        for(int i = 1; i < round.size()-1;i++){
+        for(int i = 1; i < round.size();i++){
             if(killer){
                 if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() > temp.getValue()){
                     winner = i;
                     temp = round.get(i);
                 }
-                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getNumber() > temp.getNumber()) {
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() == temp.getValue()) {
+                    winner = i;
+                    temp = round.get(i);
+                }
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getNumber() > temp.getNumber() && round.get(i).getValue() == temp.getValue()){
                     winner = i;
                     temp = round.get(i);
                 }
