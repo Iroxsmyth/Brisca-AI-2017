@@ -1,4 +1,8 @@
 package BriscaAI2017;
+
+import aima.core.robotics.MonteCarloLocalization;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static java.lang.Math.log;
@@ -13,7 +17,7 @@ public class Agent {
     private Card killer;
 
     //Monte Carlo Tree Search
-    private ArrayList<Double> UCT = new ArrayList<Double>(); // The Selection Function Montecarlo: Upper Confidence Bound 1 applied to trees
+    private ArrayList<Double> UCT = new ArrayList<Double>(); // The Selection Function Montecarlo
     private ArrayList<Integer> nVisit = new ArrayList<>();
     private ArrayList<Integer> nWin = new ArrayList<>();
     private ArrayList<Integer> nSimulation = new ArrayList<>();
@@ -38,7 +42,7 @@ public class Agent {
                 this.nSimulation.add(i,1);
             }
         }
-            this.cardChoice = MonteCarloTreeSearch();
+        this.cardChoice = MonteCarloTreeSearch();
 
     }
 
@@ -48,6 +52,7 @@ public class Agent {
         ArrayList<Integer> winPoints = new ArrayList<Integer>(3);
         Card wincard;
         int tempint = -100;
+        double tempuct= -100.0;
         int wins = 0;
         ArrayList<Card> temp = new ArrayList<Card>();
 
@@ -68,7 +73,10 @@ public class Agent {
                     tempint = points.get(j);
                 }
             }
-            System.out.println(points.get(0)+", "+points.get(1)+", "+points.get(2)+"  Tempint: "+tempint);
+            for(int j = 0; j < points.size(); j++){
+                System.out.print(points.get(j)+" ");
+            }
+            System.out.println();
             return this.hand.get(points.indexOf(tempint));
         }
         else{
@@ -96,6 +104,12 @@ public class Agent {
                     }
                     temp.remove(topcard);
                 }
+                if(handcard.getSuite().equals(this.killer.getSuite()) || handcard.getNumber()==1 || handcard.getNumber()==3){
+                    wins = wins - ((int)(0.25*wins));
+                }
+                else if(handcard.getNumber()==10 || handcard.getNumber()==11 || handcard.getNumber()==12){
+                    wins = wins - ((int)(0.10*wins));
+                }
                 temp.remove(handcard);
                 winPoints.add(wins);
                 wins = 0;
@@ -107,15 +121,25 @@ public class Agent {
                 }
             }
 
-            for(int i=0; i<hand.size();i++){
-                double point=winPoints.get(i);
-                double uct = point/36 + sqrt(2)*sqrt(log(108)/36);
-                this.UCT.set(i, uct);
+
+            for(int i = 0; i < winPoints.size(); i++){
+                double point = winPoints.get(i);
+                this.UCT.set(i, point/36 * sqrt(2)*sqrt(log(108)/36));
             }
 
-            System.out.println(winPoints.get(0)+", "+winPoints.get(1)+", "+winPoints.get(2)+"  Tempint: "+tempint);
-            System.out.println(this.UCT.get(0)+", "+this.UCT.get(1)+", "+this.UCT.get(2));
-            return this.hand.get(winPoints.indexOf(tempint));
+            for(int j = this.UCT.size()-1; j >= 0; j--){
+                if(this.UCT.get(j) >= tempuct){
+                    tempuct = this.UCT.get(j);
+                }
+            }
+
+            for(int j = 0; j < this.UCT.size(); j++){
+                System.out.print(this.UCT.get(j)+" ");
+            }
+
+            System.out.println();
+            return this.hand.get(this.UCT.indexOf(tempuct));
+            //return this.hand.get(winPoints.indexOf(tempint));
         }
     }
 
