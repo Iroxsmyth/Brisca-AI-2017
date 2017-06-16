@@ -69,7 +69,10 @@ public class Agent {
                     tempint = points.get(j);
                 }
             }
-            System.out.println(points.get(0)+", "+points.get(1)+", "+points.get(2)+"  Tempint: "+tempint);
+            for(int j = 0; j < points.size(); j++){
+                System.out.print(points.get(j)+" ");
+            }
+            System.out.println();
             return this.hand.get(points.indexOf(tempint));
         }
         else{
@@ -107,7 +110,10 @@ public class Agent {
                     tempint = winPoints.get(j);
                 }
             }
-            System.out.println(winPoints.get(0)+", "+winPoints.get(1)+", "+winPoints.get(2)+"  Tempint: "+tempint);
+            for(int j = 0; j < winPoints.size(); j++){
+                System.out.print(winPoints.get(j)+" ");
+            }
+            System.out.println();
             return this.hand.get(winPoints.indexOf(tempint));
         }
     }

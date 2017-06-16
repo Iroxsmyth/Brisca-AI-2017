@@ -63,6 +63,7 @@ public class Rules {
         for(int j = 0; j < player2.size(); j++){
             score2 = score2 + player2.get(j).getValue();
         }
+        System.out.println("Score player 1: "+ score1+"; Score player 2: "+score2);
         if(score1 > score2){
             return 1;
         }
