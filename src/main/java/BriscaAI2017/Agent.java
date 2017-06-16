@@ -45,37 +45,47 @@ public class Agent {
 
     private Card MonteCarloTreeSearch(){ //return a Card
         Rules rule = new Rules(this.killer);
-        ArrayList<Integer> points = new ArrayList<Integer>();
-        ArrayList<Integer> winPoints = new ArrayList<Integer>();
+        ArrayList<Integer> points = new ArrayList<Integer>(3);
+        ArrayList<Integer> winPoints = new ArrayList<Integer>(3);
         Card wincard;
         int tempint = -100;
         int wins = 0;
         ArrayList<Card> temp = new ArrayList<Card>();
 
         if(this.nSimulation.get(0) == 1){
-            for(int i = hand.size(); i > 0; i--){
+            for(int i = 0; i < hand.size(); i++){
                 temp.add(this.round.get(0));
-                temp.add(this.hand.get(i-1));
+                temp.add(this.hand.get(i));
                 if(rule.winnerOfRound(temp) == 1){
-                    points.add(i-1, this.round.get(0).getValue()+this.hand.get(i-1).getValue());
+                    points.add(i, this.round.get(0).getValue()+this.hand.get(i).getValue());
                 }
                 else{
-                    points.add(i-1, -(this.round.get(0).getValue()+this.hand.get(i-1).getValue()));
+                    points.add(i, (this.round.get(0).getValue()+this.hand.get(i).getValue())*-1);
                 }
+                temp.clear();
             }
             for(int j = points.size()-1; j >= 0; j--){
                 if(points.get(j) >= tempint){
                     tempint = points.get(j);
                 }
             }
+            System.out.println(points.get(0)+", "+points.get(1)+", "+points.get(2)+"  Tempint: "+tempint);
             return this.hand.get(points.indexOf(tempint));
         }
         else{
             Deck deck = new Deck();
+            boolean handKiller = false;
+            for(int i = 0; i < this.hand.size(); i++){
+                if(this.killer.getNumber() == this.hand.get(i).getNumber() && this.killer.getSuite().equals(this.hand.get(i).getSuite())){
+                    handKiller = true;
+                }
+            }
             for(int i = 0; i < this.hand.size(); i++){
                 deck.remove(this.hand.get(i));
             }
-            deck.remove(this.killer);
+            if(!handKiller){
+                deck.remove(this.killer);
+            }
             for(int i = this.hand.size()-1; i >= 0; i--){
                 Card handcard = this.hand.get(i);
                 temp.add(this.hand.get(i));
@@ -97,6 +107,7 @@ public class Agent {
                     tempint = winPoints.get(j);
                 }
             }
+            System.out.println(winPoints.get(0)+", "+winPoints.get(1)+", "+winPoints.get(2)+"  Tempint: "+tempint);
             return this.hand.get(winPoints.indexOf(tempint));
         }
     }

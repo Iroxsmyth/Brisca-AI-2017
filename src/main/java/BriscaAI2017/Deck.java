@@ -53,7 +53,7 @@ public class Deck {
     }
 
     public Card trump(){
-        Card temp = this.cardList.remove(cardList.size());
+        Card temp = this.cardList.remove(cardList.size()-1);
         this.cardList.add(0,temp);
         return temp;
     }

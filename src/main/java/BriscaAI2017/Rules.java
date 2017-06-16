@@ -1,6 +1,8 @@
 package BriscaAI2017;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  * Created by vikta on 6/3/2017.
  */
@@ -15,20 +17,15 @@ public class Rules {
     public int winnerOfRound(ArrayList<Card> round){
         int winner = 0;
         Card temp = round.get(0);
-        boolean killer = false;
-        if(temp.getSuite() == this.trump.getSuite()){
-            killer = true;
-        }
-        else{
-            killer = false;
-        }
+        boolean killer;
+        killer = Objects.equals(temp.getSuite(), this.trump.getSuite());
         for(int i = 1; i < round.size();i++){
             if(killer){
                 if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() > temp.getValue()){
                     winner = i;
                     temp = round.get(i);
                 }
-                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() == temp.getValue()) {
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getValue() == temp.getValue() && round.get(i).getNumber() > temp.getNumber()) {
                     winner = i;
                     temp = round.get(i);
                 }
@@ -47,7 +44,7 @@ public class Rules {
                     winner = i;
                     temp = round.get(i);
                 }
-                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getNumber() > temp.getNumber()){
+                else if(round.get(i).getSuite().equals(temp.getSuite()) && round.get(i).getNumber() > temp.getNumber() && round.get(i).getValue() == temp.getValue()){
                     winner = i;
                     temp = round.get(i);
                 }
